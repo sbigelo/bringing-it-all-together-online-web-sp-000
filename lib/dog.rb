@@ -80,7 +80,13 @@ attr_accessor :name, :breed, :id
   end
 
   def self.find_or_create_by(name:, breed:)
-    sql = "SELECT * FROM dogs WHERE name = ? AND breed = ? LIMIT 1"
+    sql = <<-SQL 
+    SELECT * 
+    FROM dogs 
+    WHERE name = ? 
+    AND breed = ? 
+    LIMIT 1
+    SQL
     doggo = DB[:conn].execute(sql, name, breed)
     if !doggo.empty?
       doggos = doggo[0]
