@@ -51,6 +51,7 @@ attr_accessor :name, :breed, :id
     DB[:conn].execute(sql, id).map do |row|
       self.new_from_db(row)
     end.first
+    self
   end
 
   def update
