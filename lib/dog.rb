@@ -79,43 +79,25 @@ attr_accessor :name, :breed, :id
     self
   end
 
-  # def self.find_or_create_by(name:, breed:)
-  #   sql = <<-SQL
-  #   SELECT *
-  #   FROM dogs
-  #   WHERE name = ?
-  #   AND breed = ?
-  #   LIMIT 1
-  #   SQL
-  #   doggo = DB[:conn].execute(sql, name, breed)
-  #   if !doggo.empty?
-  #     doggos = doggo[0]
-  #     doggo = Dog.new(doggos[0], doggos[1], doggos[2])
-  #   else
-  #     doggo = self.create(name: name, breed: breed)
-  #   end
-  #   doggo
-  # end
-
   def self.find_or_create_by(name:, breed:)
-      sql = <<-SQL
-            SELECT *
-            FROM dogs
-            WHERE name = ?
-            AND breed = ?
-            LIMIT 1
-          SQL
-
-      dog = DB[:conn].execute(sql,name,breed)
-
-      if !dog.empty?
-        dog_data = dog[0]
-        dog = Dog.new(id: dog_data[0], name: dog_data[1], breed: dog_data[2])
-      else
-        dog = self.create(name: name, breed: breed)
-      end
-      dog
+    sql = <<-SQL
+    SELECT *
+    FROM dogs
+    WHERE name = ?
+    AND breed = ?
+    LIMIT 1
+    SQL
+    doggo = DB[:conn].execute(sql, name, breed)
+    if !doggo.empty?
+      doggos = doggo[0]
+      doggo = Dog.new(id: doggos[0], name: doggos[1], breed: doggos[2])
+    else
+      doggo = self.create(name: name, breed: breed)
     end
+    doggo
+  end
+
+  
 
 
 end
