@@ -21,6 +21,12 @@ attr_accessor :name, :breed, :id
       DB[:conn].execute(sql)
   end
 
+  def self.create(name:, breed:)
+    doggo = Dog.new(name, breed)
+    doggo.save
+    doggo
+  end
+
   def self.drop_table
     sql = <<-SQL
     DROP TABLE IF EXISTS dogs
@@ -51,7 +57,6 @@ attr_accessor :name, :breed, :id
     DB[:conn].execute(sql, id).map do |row|
       self.new_from_db(row)
     end.first
-    self
   end
 
   def update
