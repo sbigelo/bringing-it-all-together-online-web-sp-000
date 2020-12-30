@@ -84,13 +84,11 @@ attr_accessor :name, :breed, :id
     if !doggo.empty?
       doggos = doggo[0]
       doggo = Dog.new(doggos[0], doggos[1], doggos[2])
-    else 
+    else
       doggo = self.create(name: name, breed: breed)
     end
     doggo
   end
-  
+
 
 end
-
-
