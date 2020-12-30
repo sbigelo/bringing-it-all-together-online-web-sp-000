@@ -22,7 +22,7 @@ attr_accessor :name, :breed, :id
   end
 
   def self.create(name:, breed:)
-    doggo = Dog.new(name, breed)
+    doggo = Dog.new(name: name, breed: breed)
     doggo.save
     doggo
   end
