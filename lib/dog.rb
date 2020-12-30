@@ -100,7 +100,7 @@ attr_accessor :name, :breed, :id
     doggo
   end
 
-  
+
 
 
 end
